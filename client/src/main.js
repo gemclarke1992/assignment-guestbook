@@ -5,14 +5,14 @@ const form = document.getElementById("reviewForm");
 const reviewsList = document.getElementById("reviewsList");
 
 // STAR RENDERING//
-const starss = document.querySelectorAll(".star");
+const starRate = document.querySelectorAll("#starRating.star");
 let selectedRating = 0;
 
-starss.forEach((star) => {
+starRate.forEach((star) => {
   star.addEventListener("click", () => {
     selectedRating = Number(star.dataset.value);
 
-    starss.forEach((s) => {
+    starRate.forEach((s) => {
       s.classList.toggle("active", Number(s.dataset.value) <= selectedRating);
     });
   });
@@ -80,8 +80,10 @@ form.addEventListener("submit", async (e) => {
 
     form.reset();
     selectedRating = 0;
-
-    stars.forEach((s) => s.classList.remove("active"));
+    starRate.forEach((s) => {
+      s.classList.remove("active");
+    });
+    -stars.forEach((s) => s.classList.remove("active"));
   } catch (error) {
     console.error("Error submitting review:", error);
   }
