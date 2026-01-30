@@ -43,14 +43,21 @@ form label {
   color: gold;
 }
 
+.stars {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
 .star {
+  font-size: 2.5rem;
+  color: #ccc; /* light gray = blank star */
   cursor: pointer;
-  color: #ccc;
-  font-size: 2rem;
+  transition: color 0.3s;
 }
 
 .star.active {
-  color: gold;
+  color: gold; /* yellow star */
 }
 
 textarea {
