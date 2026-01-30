@@ -12,7 +12,7 @@ stars.forEach((star) => {
     ratingInput.value = selectedRating;
 
     stars.forEach((s) => {
-      s.classList.toggle("active", s.dataset.value <= selectedRating);
+      s.classList.toggle("active", s.dataset.value) <= Number(selectedRating);
     });
   });
 });
@@ -24,7 +24,7 @@ function addReview(rating, comment) {
 
   const starDiv = document.createElement("div");
   starDiv.classList.add("stars");
-  starDiv.textContent = "⭐".repeat(rating);
+  starDiv.textContent = "&#11088;".repeat(rating);
 
   const commentText = document.createElement("p");
   commentText.textContent = comment;
@@ -67,7 +67,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
-    await fetch("https://assignment-guestbook-client.onrender.com//reviews", {
+    await fetch("https://assignment-guestbook-client.onrender.com/reviews", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
