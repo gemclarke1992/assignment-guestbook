@@ -16,7 +16,6 @@ const supabase = createClient(
 
 /* GET REVIEWS */
 app.get("/reviews", async (req, res) => {
-  res.send("hello");
   const { data, error } = await supabase
     .from("reviews")
     .select("*")
@@ -28,6 +27,7 @@ app.get("/reviews", async (req, res) => {
 
   res.status(200).json(data);
 });
+
 
 /* POST REVIEW */
 app.post("/reviews", async (req, res) => {
