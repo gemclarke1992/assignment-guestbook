@@ -8,12 +8,13 @@ const form = document.getElementById("reviewForm");
 const reviewsList = document.getElementById("reviewsList");
 
 /* ⭐ STAR CLICK HANDLING */
-const stars = document.querySelectorAll(".star");
-
 stars.forEach((star, index) => {
   star.addEventListener("click", () => {
+    selectedRating = index + 1;
+    ratingInput.value = selectedRating;
+
     stars.forEach((s, i) => {
-      s.classList.toggle("active", i <= index);
+      s.classList.toggle("active", i < selectedRating);
     });
   });
 });
