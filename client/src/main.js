@@ -1,6 +1,6 @@
 let selectedRating = 0;
 
-import "./styles.css";
+import "./style.css";
 
 const stars = document.querySelectorAll(".star");
 const ratingInput = document.getElementById("rating");
