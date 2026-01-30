@@ -1,20 +1,19 @@
-let selectedRating = 0;
-
 import "./style.css";
 
-const stars = document.querySelectorAll(".star");
-const ratingInput = document.getElementById("rating");
+const stars = document.querySelectorAll('input[name="rating"]');
 const form = document.getElementById("reviewForm");
 const reviewsList = document.getElementById("reviewsList");
 
-/* ⭐ STAR CLICK HANDLING */
-stars.forEach((star, index) => {
-  star.addEventListener("click", () => {
-    selectedRating = index + 1;
-    ratingInput.value = selectedRating;
+// STAR RENDERING//
+const star = document.querySelectorAll(".star");
+let selectedRating = 0;
 
-    stars.forEach((s, i) => {
-      s.classList.toggle("active", i < selectedRating);
+star.forEach((star) => {
+  star.addEventListener("click", () => {
+    selectedRating = Number(star.dataset.value);
+
+    star.forEach((s) => {
+      s.classList.toggle("active", Number(s.dataset.value) <= selectedRating);
     });
   });
 });
@@ -26,7 +25,7 @@ function addReview(rating, comment) {
 
   const starDiv = document.createElement("div");
   starDiv.classList.add("stars");
-  starDiv.textContent = "&#11088;".repeat(rating);
+  starDiv.textContent = "⭐".repeat(rating);
 
   const commentText = document.createElement("p");
   commentText.textContent = comment;
@@ -60,10 +59,9 @@ loadReviews();
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const rating = ratingInput.value;
   const comment = document.getElementById("comment").value;
 
-  if (!rating || !comment) {
+  if (selectedRating === 0 || !comment) {
     alert("Please provide both a rating and a comment.");
     return;
   }
@@ -73,16 +71,17 @@ form.addEventListener("submit", async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        rating: Number(rating),
+        rating: selectedRating,
         comment,
       }),
     });
 
-    addReview(rating, comment);
+    addReview(selectedRating, comment);
 
     form.reset();
-    stars.forEach((s) => s.classList.remove("active"));
     selectedRating = 0;
+
+    stars.forEach((s) => s.classList.remove("active"));
   } catch (error) {
     console.error("Error submitting review:", error);
   }
