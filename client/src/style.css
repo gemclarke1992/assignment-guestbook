@@ -45,13 +45,12 @@ form label {
 
 .star {
   cursor: pointer;
-  color: gray;
+  color: #ccc;
   font-size: 2rem;
-  transition: color 0.3s ease;
 }
 
 .star.active {
-  color: orange;
+  color: gold;
 }
 
 textarea {

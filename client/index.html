@@ -16,14 +16,23 @@
 
     <form id="reviewForm" method="post">
       <label for="rating">Rate the Hotel (out of 5)</label>
-      <div id="starRating">
-        <span class="star" data-value="1">&#11088;</span>
-        <span class="star" data-value="2">&#11088;</span>
-        <span class="star" data-value="3">&#11088;</span>
-        <span class="star" data-value="4">&#11088;</span>
-        <span class="star" data-value="5">&#11088;</span>
-      </div>
-      <input type="hidden" id="rating" name="rating"/>
+      <div class="stars">
+  <input type="radio" id="star5" name="rating" value="5">
+  <label for="star5">★</label>
+
+  <input type="radio" id="star4" name="rating" value="4">
+  <label for="star4">★</label>
+
+  <input type="radio" id="star3" name="rating" value="3">
+  <label for="star3">★</label>
+
+  <input type="radio" id="star2" name="rating" value="2">
+  <label for="star2">★</label>
+
+  <input type="radio" id="star1" name="rating" value="1">
+  <label for="star1">★</label>
+</div>
+
 
      <label for="comment">Comment</label>
      <textarea id="comment" name="comment" required></textarea>
