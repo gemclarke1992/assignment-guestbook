@@ -5,14 +5,14 @@ const form = document.getElementById("reviewForm");
 const reviewsList = document.getElementById("reviewsList");
 
 // STAR RENDERING//
-const star = document.querySelectorAll(".star");
+const starss = document.querySelectorAll(".star");
 let selectedRating = 0;
 
-star.forEach((star) => {
+starss.forEach((star) => {
   star.addEventListener("click", () => {
     selectedRating = Number(star.dataset.value);
 
-    star.forEach((s) => {
+    starss.forEach((s) => {
       s.classList.toggle("active", Number(s.dataset.value) <= selectedRating);
     });
   });
