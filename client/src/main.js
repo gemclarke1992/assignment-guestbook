@@ -1,11 +1,10 @@
 import "./style.css";
 
-const stars = document.querySelectorAll('input[name="rating"]');
 const form = document.getElementById("reviewForm");
 const reviewsList = document.getElementById("reviewsList");
 
 // STAR RENDERING//
-const starRate = document.querySelectorAll("#starRating.star");
+const starRate = document.querySelectorAll(".star");
 let selectedRating = 0;
 
 starRate.forEach((star) => {
@@ -83,7 +82,7 @@ form.addEventListener("submit", async (e) => {
     starRate.forEach((s) => {
       s.classList.remove("active");
     });
-    -stars.forEach((s) => s.classList.remove("active"));
+    starRate.forEach((s) => s.classList.remove("active"));
   } catch (error) {
     console.error("Error submitting review:", error);
   }
