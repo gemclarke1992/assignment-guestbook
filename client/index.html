@@ -4,16 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>client</title>
+    <title>Hotel review page</title>
   </head>
   <body>
     <div id="app"></div>
+    <header>
+      <h1>Review Page</h1>
+    </header>
 
-    <form id="form">
-      <input type="text" name="msg_name" />
-      <input type="text" name="content" />
-      <button type="submit">submit</button>
+    <form id="reviewForm" method="post">
+      <label for="rating">Rate the Hotel (out of 5)</label>
+      <div id="starRating">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+      <input type="hidden" id="rating" name="rating"/>
+      
+     <label for="comment">Comment</label>
+     <textarea id="comment" name="comment" required></textarea>
+      <button type="submit">Submit Review</button>
     </form>
+<h2>Guest Reviews</h2>
+    <div id="reviews">
+      <div class="review">
+        <div class="stars">&#11088 &#11088 &#11088 &#11088 &#11088
+        </div>
+        <p>Amazing experience! The staff were friendly and the rooms were clean and comfortable. Highly recommend!</p>
+      </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

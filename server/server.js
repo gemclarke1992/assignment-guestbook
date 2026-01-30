@@ -1,37 +1,51 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import pg from "pg";
+import { createClient } from "@supabase/supabase-js";
 
-const app = express();
-app.use(express.json());
-app.use(cors());
 dotenv.config();
 
-const db = new pg.Pool({
-  connectionString: process.env.DB_CONN,
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+);
+
+/* GET REVIEWS */
+app.get("/reviews", async (req, res) => {
+  res.send("hello");
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  res.status(200).json(data);
 });
 
-app.get("/", (req, res) => {
-  res.send("Hell");
-});
+/* POST REVIEW */
+app.post("/reviews", async (req, res) => {
+  const { rating, comment } = req.body;
 
-app.get("/messages", async (req, res) => {
-  const data = await db.query(`SELECT * FROM messages`);
-  const messages = data.rows;
-  res.status(200).json(messages);
-});
+  const { data, error } = await supabase
+    .from("reviews")
+    .insert([{ rating, comment }])
+    .select()
+    .single();
 
-app.post("/messages", async (req, res) => {
-  const userData = req.body;
-  const dbQuery = await db.query(
-    `INSERT INTO messages (msg_name, content) VALUES ($1, $2)`,
-    [userData.msg_name, userData.content],
-  );
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
 
-  res.status(200).json({ message: "added message" });
+  res.status(201).json(data);
 });
 
 app.listen(4242, () => {
-  console.log(`Server started on port http://localhost:4242`);
+  console.log("Server running on port 4242");
 });
