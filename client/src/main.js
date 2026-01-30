@@ -1,5 +1,7 @@
 let selectedRating = 0;
 
+import "./styles.css";
+
 const stars = document.querySelectorAll(".star");
 const ratingInput = document.getElementById("rating");
 const form = document.getElementById("reviewForm");
