@@ -10,3 +10,16 @@
 .star.active {
   color: orange;
 }
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  form {
+    padding: 10px;
+  }
+
+  #starRating {
+    font-size: 24px;
+  }
+}
