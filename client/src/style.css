@@ -14,7 +14,7 @@ h1 {
   font-family: "Poppins", sans-serif;
 }
 
-form #reviewForm {
+#reviewForm {
   max-width: 600px;
   margin: 0 auto 2rem auto;
   padding: 20px 25px;
@@ -81,7 +81,7 @@ button:hover {
   background-color: #2980b9;
 }
 
-#reviewList {
+#reviewsList {
   max-width: 600px;
   margin: 0 auto;
 }
