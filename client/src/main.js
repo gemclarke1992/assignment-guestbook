@@ -45,7 +45,7 @@ async function loadReviews() {
     reviewsList.innerHTML = "";
 
     reviews.forEach((review) => {
-      addReview(review.rating, review.comment);
+      addReview(review.id, review.rating, review.comment, review.likes);
     });
   } catch (error) {
     console.error("Error loading reviews:", error);
@@ -75,15 +75,52 @@ form.addEventListener("submit", async (e) => {
       }),
     });
 
-    addReview(selectedRating, comment);
+    await addReview(selectedRating, comment);
 
     form.reset();
     selectedRating = 0;
     starRate.forEach((s) => {
       s.classList.remove("active");
     });
-    starRate.forEach((s) => s.classList.remove("active"));
   } catch (error) {
     console.error("Error submitting review:", error);
   }
 });
+
+function addReview(id, rating, comment) {
+  const review = document.createElement("div");
+  review.classList.add("review");
+  review.dataset.id = id;
+
+  const starDiv = document.createElement("div");
+  starDiv.classList.add("stars");
+  starDiv.textContent = "⭐".repeat(rating);
+
+  const commentText = document.createElement("p");
+  commentText.textContent = comment;
+
+  const likeButton = document.createElement("button");
+  likeButton.classList.add("like-button");
+  likeButton.textContent = "❤️ ${likes}";
+
+  likeButton.addEventListener("click", async () => {
+    try {
+      await fetch(
+        `https://assignment-guestbook-client.onrender.com/reviews/${id}/like`,
+        {
+          method: "PATCH",
+        },
+      );
+      likeButton.textContent = "❤️ ${likes}";
+    } catch (error) {
+      console.error("Error liking review:", error);
+    }
+
+    loadReviews();
+  });
+
+  review.appendChild(starDiv);
+  review.appendChild(commentText);
+  review.appendChild(likeButton);
+  reviewsList.appendChild(review);
+}
