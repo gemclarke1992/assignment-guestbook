@@ -121,6 +121,6 @@ function addReview(id, rating, comment, likes = 0) {
 
   review.appendChild(starDiv);
   review.appendChild(commentText);
-  review.appendChild(likeButton);
+  review.appendChild(likeBtn);
   reviewsList.appendChild(review);
 }
