@@ -52,8 +52,8 @@ function addReview(id, rating, comment, likes = 0) {
 
   review.appendChild(starDiv);
   review.appendChild(commentText);
-  reviewsList.appendChild(review);
   review.appendChild(likeBtn);
+  reviewsList.appendChild(review);
 }
 
 /* 🔄 LOAD REVIEWS (GET) */
