@@ -18,9 +18,10 @@ starRate.forEach((star) => {
 });
 
 /* 🧱 RENDER REVIEW */
-function addReview(rating, comment) {
+function addReview(id, rating, comment, likes = 0) {
   const review = document.createElement("div");
   review.classList.add("review");
+  review.dataset.id = id;
 
   const starDiv = document.createElement("div");
   starDiv.classList.add("stars");
@@ -87,7 +88,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-function addReview(id, rating, comment, likes = 0) {
+function addReview(rating, comment) {
   const review = document.createElement("div");
   review.classList.add("review");
   review.dataset.id = id;
@@ -101,7 +102,7 @@ function addReview(id, rating, comment, likes = 0) {
 
   const likeBtn = document.createElement("button");
   likeBtn.classList.add("like-button");
-  likeBtn.textContent = "❤️ ${likes}";
+  likeBtn.textContent = `❤️ ${likes}`;
 
   likeBtn.addEventListener("click", async () => {
     try {
@@ -111,7 +112,7 @@ function addReview(id, rating, comment, likes = 0) {
           method: "PATCH",
         },
       );
-      likeBtn.textContent = "❤️ ${likes}";
+      likeBtn.textContent = `❤️ ${likes + 1}`;
     } catch (error) {
       console.error("Error liking review:", error);
     }
