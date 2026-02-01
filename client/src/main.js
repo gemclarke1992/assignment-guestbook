@@ -87,7 +87,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-function addReview(id, rating, comment) {
+function addReview(id, rating, comment, likes = 0) {
   const review = document.createElement("div");
   review.classList.add("review");
   review.dataset.id = id;
@@ -99,11 +99,11 @@ function addReview(id, rating, comment) {
   const commentText = document.createElement("p");
   commentText.textContent = comment;
 
-  const likeButton = document.createElement("button");
-  likeButton.classList.add("like-button");
-  likeButton.textContent = "❤️ ${likes}";
+  const likeBtn = document.createElement("button");
+  likeBtn.classList.add("like-button");
+  likeBtn.textContent = "❤️ ${likes}";
 
-  likeButton.addEventListener("click", async () => {
+  likeBtn.addEventListener("click", async () => {
     try {
       await fetch(
         `https://assignment-guestbook-client.onrender.com/reviews/${id}/like`,
@@ -111,7 +111,7 @@ function addReview(id, rating, comment) {
           method: "PATCH",
         },
       );
-      likeButton.textContent = "❤️ ${likes}";
+      likeBtn.textContent = "❤️ ${likes}";
     } catch (error) {
       console.error("Error liking review:", error);
     }
