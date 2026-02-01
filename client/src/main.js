@@ -30,9 +30,30 @@ function addReview(id, rating, comment, likes = 0) {
   const commentText = document.createElement("p");
   commentText.textContent = comment;
 
+  const likeBtn = document.createElement("button");
+  likeBtn.classList.add("like", "btn");
+  likeBtn.textContent = `❤️ ${likes}`;
+
+  likeBtn.addEventListener("click", async () => {
+    try {
+      await fetch(
+        `https://assignment-guestbook-client.onrender.com/reviews/${id}/like`,
+        {
+          method: "PATCH",
+        },
+      );
+      likeBtn.textContent = `❤️ ${likes + 1}`;
+    } catch (error) {
+      console.error("Error liking review:", error);
+    }
+
+    await loadReviews();
+  });
+
   review.appendChild(starDiv);
   review.appendChild(commentText);
   reviewsList.appendChild(review);
+  review.appendChild(likeBtn);
 }
 
 /* 🔄 LOAD REVIEWS (GET) */
@@ -76,7 +97,7 @@ form.addEventListener("submit", async (e) => {
       }),
     });
 
-    await addReview(selectedRating, comment);
+    await loadReviews();
 
     form.reset();
     selectedRating = 0;
@@ -87,41 +108,3 @@ form.addEventListener("submit", async (e) => {
     console.error("Error submitting review:", error);
   }
 });
-
-function addReview(rating, comment) {
-  const review = document.createElement("div");
-  review.classList.add("review");
-  review.dataset.id = id;
-
-  const starDiv = document.createElement("div");
-  starDiv.classList.add("stars");
-  starDiv.textContent = "⭐".repeat(rating);
-
-  const commentText = document.createElement("p");
-  commentText.textContent = comment;
-
-  const likeBtn = document.createElement("button");
-  likeBtn.classList.add("like-button");
-  likeBtn.textContent = `❤️ ${likes}`;
-
-  likeBtn.addEventListener("click", async () => {
-    try {
-      await fetch(
-        `https://assignment-guestbook-client.onrender.com/reviews/${id}/like`,
-        {
-          method: "PATCH",
-        },
-      );
-      likeBtn.textContent = `❤️ ${likes + 1}`;
-    } catch (error) {
-      console.error("Error liking review:", error);
-    }
-
-    loadReviews();
-  });
-
-  review.appendChild(starDiv);
-  review.appendChild(commentText);
-  review.appendChild(likeBtn);
-  reviewsList.appendChild(review);
-}
