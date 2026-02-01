@@ -4,40 +4,43 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Hotel review page</title>
   </head>
   <body>
-    <div id="app"></div>
     <header>
       <h1>Review Page</h1>
     </header>
 
     <form id="reviewForm" method="post">
       <label for="rating">Rate the Hotel (out of 5)</label>
-  <div class="stars">
-  <span class="star" data-value="1">★</span>
-  <span class="star" data-value="2">★</span>
-  <span class="star" data-value="3">★</span>
-  <span class="star" data-value="4">★</span>
-  <span class="star" data-value="5">★</span>
-</div>
-
-
-
-     <label for="comment">Comment</label>
-     <textarea id="comment" name="comment" required></textarea>
-      <button type="submit">Submit Review</button>
-    </form>
-<h2>Guest Reviews</h2>
-    <div id="reviewsList">
-      <div class="review">
-        <div class="stars">&#11088; &#11088; &#11088;&#11088; &#11088;
-        </div>
-        <p>Amazing experience! The staff were friendly and the rooms were clean and comfortable. Highly recommend!</p>
+      <div class="stars">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
       </div>
 
-    <script type="module" src="/src/main.js"></script>
+      <label for="comment">Comment</label>
+      <textarea id="comment" name="comment" required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+    <h2>Guest Reviews</h2>
+    <div id="reviewsList">
+      <div class="review">
+        <div class="stars">&#11088; &#11088; &#11088;&#11088; &#11088;</div>
+        <p>
+          Amazing experience! The staff were friendly and the rooms were clean
+          and comfortable. Highly recommend!
+        </p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js" defer></script>
   </body>
 </html>
