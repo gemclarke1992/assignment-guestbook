@@ -37,7 +37,7 @@ function addReview(id, rating, comment, likes = 0) {
   likeBtn.addEventListener("click", async () => {
     try {
       await fetch(
-        `https://assignment-guestbook-client.onrender.com/reviews/${id}/like`,
+        `https://assignment-guestbook-server.onrender.com/reviews/${id}/like`,
         {
           method: "PATCH",
         },
@@ -60,7 +60,7 @@ function addReview(id, rating, comment, likes = 0) {
 async function loadReviews() {
   try {
     const response = await fetch(
-      "https://assignment-guestbook-client.onrender.com/reviews",
+      "https://assignment-guestbook-server.onrender.com/reviews",
     );
     const reviews = await response.json();
 
@@ -88,7 +88,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
-    await fetch("https://assignment-guestbook-client.onrender.com/reviews", {
+    await fetch("https://assignment-guestbook-server.onrender.com/reviews", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
